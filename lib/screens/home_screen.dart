@@ -34,15 +34,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Previsão do Tempo'),
+        title: const Text('Weather App'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _refreshWeather,
-          ),
-          IconButton(
-            icon: const Icon(Icons.location_city),
-            onPressed: () => Navigator.pushNamed(context, '/location'),
+            icon: const Icon(Icons.location_on),
+            onPressed: () async {
+              final selectedCity = await Navigator.pushNamed(context, '/location');
+              if (selectedCity != null && selectedCity is String) {
+                setState(() {
+                  _city = selectedCity;
+                  _weatherFuture = _weatherService.getCurrentWeather(_city); // Atualiza o clima!
+                });
+              }
+            },
           ),
         ],
       ),
@@ -71,6 +75,10 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _refreshWeather,
+        child: const Icon(Icons.refresh),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
