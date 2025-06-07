@@ -11,6 +11,7 @@ class ForecastItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final date = DateTime.fromMillisecondsSinceEpoch(forecast.dt * 1000);
     final dayOfWeek = DateFormat('EEEE', 'pt_BR').format(date);
+    final dayOfWeekCapitalized = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
     final time = DateFormat('HH:mm').format(date);
 
     return Card(
@@ -31,7 +32,7 @@ class ForecastItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    dayOfWeek,
+                    dayOfWeekCapitalized,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

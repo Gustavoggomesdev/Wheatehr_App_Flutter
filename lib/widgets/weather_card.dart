@@ -11,6 +11,7 @@ class WeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final date = DateTime.fromMillisecondsSinceEpoch(weatherData.dt * 1000);
     final dayOfWeek = DateFormat('EEEE', 'pt_BR').format(date);
+    final dayOfWeekCapitalized = dayOfWeek[0].toUpperCase() + dayOfWeek.substring(1);
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -18,7 +19,7 @@ class WeatherCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            dayOfWeek,
+            dayOfWeekCapitalized,
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -37,11 +38,17 @@ class WeatherCard extends StatelessWidget {
           Center(
             child: Column(
               children: [
-                Image.network(
-                  'https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png',
-                  width: 150,
-                  height: 150,
-                ),
+                weatherData.weather[0].icon == '01d'
+                    ? Image.asset(
+                        'assets/sun.png', // Coloque seu ícone de sol em assets/sun.png
+                        width: 150,
+                        height: 150,
+                      )
+                    : Image.network(
+                        'https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png',
+                        width: 150,
+                        height: 150,
+                      ),
                 Text(
                   '${weatherData.main.temp.round()}°C',
                   style: const TextStyle(
