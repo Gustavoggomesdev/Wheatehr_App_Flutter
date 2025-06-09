@@ -18,4 +18,11 @@ class ForecastData {
       weather: (json['weather'] as List).map((e) => Weather.fromJson(e)).toList(),
     );
   }
+
+  DateTime get dateTime => DateTime.fromMillisecondsSinceEpoch(dt * 1000);
+
+  String get formattedDate {
+    final day = DateTime(dateTime.year, dateTime.month, dateTime.day);
+    return '${day.day}/${day.month}/${day.year}';
+  }
 }

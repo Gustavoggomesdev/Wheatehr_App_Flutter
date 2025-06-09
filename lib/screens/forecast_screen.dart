@@ -72,10 +72,12 @@ class _ForecastScreenState extends State<ForecastScreen> {
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return const EmptyWidget();
             } else {
+              // Agrupe por dia:
+              final groupedForecasts = groupForecastsByDay(snapshot.data!);
               return ListView.builder(
-                itemCount: snapshot.data!.length,
+                itemCount: groupedForecasts.length,
                 itemBuilder: (context, index) {
-                  return ForecastItem(forecast: snapshot.data![index]);
+                  return ForecastItem(forecast: groupedForecasts[index]);
                 },
               );
             }
@@ -84,6 +86,18 @@ class _ForecastScreenState extends State<ForecastScreen> {
       ),
     );
   }
+}
+
+List<ForecastData> groupForecastsByDay(List<ForecastData> forecasts) {
+  final Map<String, ForecastData> grouped = {};
+  for (var forecast in forecasts) {
+    final day = DateTime(forecast.dateTime.year, forecast.dateTime.month, forecast.dateTime.day);
+    final key = day.toIso8601String();
+    if (!grouped.containsKey(key)) {
+      grouped[key] = forecast;
+    }
+  }
+  return grouped.values.toList();
 }
 
 // Route configuratio
