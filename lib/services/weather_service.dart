@@ -7,9 +7,9 @@ class WeatherService {
   static const String _apiKey = 'f37bf76c25e6705daa39130b2cc55fb7'; // Substitua pela sua API key
   static const String _baseUrl = 'https://api.openweathermap.org/data/2.5';
 
-  Future<WeatherData> getCurrentWeather(String city) async {
+  Future<WeatherData> getCurrentWeather(String city, {String unit = 'metric'}) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/weather?q=$city&appid=$_apiKey&units=metric&lang=pt'),
+      Uri.parse('$_baseUrl/weather?q=$city&appid=$_apiKey&units=$unit&lang=pt'),
     );
 
     if (response.statusCode == 200) {
@@ -19,9 +19,9 @@ class WeatherService {
     }
   }
 
-  Future<List<ForecastData>> getForecast(String city) async {
+  Future<List<ForecastData>> getForecast(String city, {String unit = 'metric'}) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/forecast?q=$city&appid=$_apiKey&units=metric&lang=pt'),
+      Uri.parse('$_baseUrl/forecast?q=$city&appid=$_apiKey&units=$unit&lang=pt'),
     );
 
     if (response.statusCode == 200) {

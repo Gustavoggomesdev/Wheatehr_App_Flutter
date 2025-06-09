@@ -7,7 +7,9 @@ import '../widgets/error_widget.dart';
 import '../widgets/empty_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final String unit;
+
+  const HomeScreen({super.key, required this.unit});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,13 +23,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _weatherFuture = _weatherService.getCurrentWeather(_city);
+    _weatherFuture = _weatherService.getCurrentWeather(_city, unit: widget.unit);
   }
 
   void _refreshWeather() {
     setState(() {
-      _weatherFuture = _weatherService.getCurrentWeather(_city);
+      _weatherFuture = _weatherService.getCurrentWeather(_city, unit: widget.unit);
     });
+  }
+
+  @override
+  void didUpdateWidget(HomeScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.unit != widget.unit) {
+      _refreshWeather();
+    }
   }
 
   @override
@@ -43,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (selectedCity != null && selectedCity is String) {
                 setState(() {
                   _city = selectedCity;
-                  _weatherFuture = _weatherService.getCurrentWeather(_city); // Atualiza o clima!
+                  _weatherFuture = _weatherService.getCurrentWeather(_city, unit: widget.unit);
                 });
               }
             },
@@ -107,3 +117,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+
+// onGenerateRoute: (settings) {
+//   if (settings.name == '/forecast') {
+//     final city = settings.arguments as String? ?? 'São Paulo';
+//     return MaterialPageRoute(
+//       builder: (context) => ForecastScreen(unit: _unit, city: city),
+//     );
+//   }
+//   // outras rotas...
+//   return null;
+// },

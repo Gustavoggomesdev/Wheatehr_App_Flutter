@@ -7,7 +7,10 @@ import '../widgets/error_widget.dart';
 import '../widgets/empty_widget.dart';
 
 class ForecastScreen extends StatefulWidget {
-  const ForecastScreen({super.key});
+  final String unit;
+  final String city;
+
+  const ForecastScreen({super.key, required this.unit, required this.city});
 
   @override
   State<ForecastScreen> createState() => _ForecastScreenState();
@@ -15,27 +18,32 @@ class ForecastScreen extends StatefulWidget {
 
 class _ForecastScreenState extends State<ForecastScreen> {
   late Future<List<ForecastData>> _forecastFuture;
-  late String _city;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final args = ModalRoute.of(context)!.settings.arguments;
-    _city = args != null ? args as String : 'São Paulo';
-    _forecastFuture = WeatherService().getForecast(_city);
+  void initState() {
+    super.initState();
+    _forecastFuture = WeatherService().getForecast(widget.city, unit: widget.unit);
   }
 
   void _refreshForecast() {
     setState(() {
-      _forecastFuture = WeatherService().getForecast(_city);
+      _forecastFuture = WeatherService().getForecast(widget.city, unit: widget.unit);
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant ForecastScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.unit != widget.unit || oldWidget.city != widget.city) {
+      _refreshForecast();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Previsão para $_city'),
+        title: Text('Previsão para ${widget.city} (${widget.unit == "metric" ? "°C" : "°F"})'),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -78,3 +86,4 @@ class _ForecastScreenState extends State<ForecastScreen> {
   }
 }
 
+// Route configuratio
