@@ -21,7 +21,7 @@ class MyAppRoot extends StatefulWidget {
 
 class _MyAppRootState extends State<MyAppRoot> {
   bool _darkMode = false;
-  String _unit = 'metric'; // ou 'imperial'
+  String _unit = 'metric'; 
 
   void _toggleDarkMode(bool value) {
     setState(() {
