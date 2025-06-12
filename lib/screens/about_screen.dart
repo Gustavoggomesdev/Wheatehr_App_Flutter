@@ -23,7 +23,7 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             Text(
-              'Versão 1.0.3',
+              'Versão 1.2.0',
               style: TextStyle(
                 fontSize: 16,
               ),
