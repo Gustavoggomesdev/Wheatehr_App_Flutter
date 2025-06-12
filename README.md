@@ -1,16 +1,14 @@
-# weather_app
+<h1>Weather App</h1>
+<hr>
 
-A new Flutter project.
+<h3>Resumo do Projeto</h3>
 
-## Getting Started
+Este projeto Flutter foi desenvolvido para a disciplina de Mobile I. Trata-se de um aplicativo de 
+previsão do tempo, que consome uma API pública para exibir dados meteorológicos. Ele 
+cumpre todos os requisitos obrigatórios do trabalho: 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+• Possui 5 telas com rotas nomeadas 
+• Usa troca de telas com passagem de parâmetro 
+• Consome dados de uma API externa 
+• Trata os estados de erro, sucesso e dados vazios 
+• É responsivo, adaptando-se a diferentes resoluções 
