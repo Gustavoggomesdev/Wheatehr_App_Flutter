@@ -118,14 +118,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
-// onGenerateRoute: (settings) {
-//   if (settings.name == '/forecast') {
-//     final city = settings.arguments as String? ?? 'São Paulo';
-//     return MaterialPageRoute(
-//       builder: (context) => ForecastScreen(unit: _unit, city: city),
-//     );
-//   }
-//   // outras rotas...
-//   return null;
-// },
