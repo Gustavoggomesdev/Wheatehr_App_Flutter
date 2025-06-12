@@ -7,8 +7,8 @@ Este projeto Flutter foi desenvolvido para a disciplina de Mobile I. Trata-se de
 previsão do tempo, que consome uma API pública para exibir dados meteorológicos. Ele 
 cumpre todos os requisitos obrigatórios do trabalho: 
 
-• Possui 5 telas com rotas nomeadas <hr>
-• Usa troca de telas com passagem de parâmetro <hr>
-• Consome dados de uma API externa <hr>
-• Trata os estados de erro, sucesso e dados vazios <hr>
-• É responsivo, adaptando-se a diferentes resoluções <hr>
+• Possui 5 telas com rotas nomeadas <br>
+• Usa troca de telas com passagem de parâmetro <br>
+• Consome dados de uma API externa <br>
+• Trata os estados de erro, sucesso e dados vazios <br>
+• É responsivo, adaptando-se a diferentes resoluções <br>
