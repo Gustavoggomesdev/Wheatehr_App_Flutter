@@ -18,6 +18,7 @@ class LocationScreen extends StatelessWidget {
           _buildLocationItem(context, 'Curitiba', 'PR'),
           _buildLocationItem(context, 'Palmas', 'TO'),
           _buildLocationItem(context, 'Porto Alegre', 'RS'),
+          _buildLocationItem(context, 'Goiania', 'GO'),
         ],
       ),
     );
